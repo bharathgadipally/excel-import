@@ -1,0 +1,25 @@
+table.excel-table > tbody > tr:first-child > td {
+  background-color: lightgreen;
+}
+
+.row {
+  display: flex;
+}
+
+.side {
+  flex: 20%;
+  padding: 10px;
+}
+
+.main {
+  flex: 80%;
+  padding: 10px;
+}
+
+.cell{
+    width: 120px;
+}
+
+.clearButton{
+    float: right;
+}
