@@ -1,7 +1,6 @@
 .drop-list {
   height: 100%;
   width: 100%;
-  border: 1px #393e40 solid;
   overflow-y: scroll;
   border-collapse: collapse;
 }
@@ -14,10 +13,6 @@ table, td {
 table {
   border-collapse: collapse ;
   width: 100%;
-}
-
-td {
-  padding: 15px;
 }
 
 .item {
