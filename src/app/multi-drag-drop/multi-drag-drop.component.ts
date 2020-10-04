@@ -22,9 +22,7 @@ import * as _ from 'lodash';
 export class MultiDragDropComponent {
   @Input() items: any[];
   @Input() type: string;
-  @Output() itemsRemoved = new EventEmitter<any[]>();
   @Output() itemsAdded = new EventEmitter<any[]>();
-  @Output() itemsUpdated = new EventEmitter<any[]>();
   @Output() selectionChanged = new EventEmitter<any[]>();
   @ContentChild(TemplateRef, { static: false }) templateRef;
 
@@ -55,23 +53,6 @@ export class MultiDragDropComponent {
     this.cdRef.detectChanges();
   }
 
-  dropped(ev: CdkDragDrop<any>): void {
-    if (!ev.isPointerOverContainer || !_.get(ev, 'item.data.source') && this.type === 'source') {
-      return;
-    }
-    const data = ev.item.data;
-
-    if (data.source === this) {
-      const removed = _.pullAt(this.items, data.indices);
-      if (ev.previousContainer !== ev.container) {
-        this.itemsRemoved.emit(removed);
-        this.itemsUpdated.emit(this.items);
-      }
-    }
-    this.dragging = null;
-    setTimeout(() => this.clearSelection());
-  }
-
   droppedIntoList(ev: CdkDragDrop<any>): void {
     if (!ev.isPointerOverContainer || !_.get(ev, 'item.data.source') && this.type === 'source') {
       return;
@@ -88,7 +69,6 @@ export class MultiDragDropComponent {
     if (ev.previousContainer !== ev.container) {
       this.itemsAdded.emit(data.values);
     }
-    this.itemsUpdated.emit(this.items);
     setTimeout(() => this.cdRef.detectChanges());
   }
 

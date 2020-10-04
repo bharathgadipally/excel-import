@@ -11,9 +11,9 @@
   </app-multi-drag-drop>
   <app-multi-drag-drop [items]="TableDataSource" class="main" type="destination" (itemsAdded)="tableDataSourceChanged($event)" (itemsUpdated)="tableDataSourceChanged($event)">
     <ng-template let-item>
-      <span class="cell" *ngFor="let col of item | keyvalue">
+      <td *ngFor="let col of item | keyvalue">
         {{ col.value | checkdate }}
-      </span>
+      </td>
     </ng-template>
   </app-multi-drag-drop>
 </div>
